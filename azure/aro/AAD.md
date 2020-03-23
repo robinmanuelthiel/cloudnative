@@ -22,6 +22,7 @@ To ensure, that both, native Azure Active Directory users and B2B users can logi
 For OAuth, a redirect URI to the cluster has to be added to the App registration. This url looks like this:
 
 **Schema:** `https://oauth-openshift.apps.<YOUR_CLUSER_DOMAIN>/oauth2callback/<OAUTH_PROVIDER_NAME>`
+
 **Example:** `https://oauth-openshift.apps.15owzrxf.eastus.aroapp.io/oauth2callback/Azure%20Active%20Directory`
 
 To add the redirect URI, follow the following steps:
