@@ -19,10 +19,17 @@ To ensure, that both, native Azure Active Directory users and B2B users can logi
 
 ### Add a Redirect URI
 
-For OAuth, a redirect URI to the cluster has to be added to the App registration. This url looks like this:
+For OAuth, a redirect URI to the cluster has to be added to the App registration, which follows the following scheme.
 
-**Schema:** `https://oauth-openshift.apps.<YOUR_CLUSER_DOMAIN>/oauth2callback/<OAUTH_PROVIDER_NAME>`
-**Example:** `https://oauth-openshift.apps.15owzrxf.eastus.aroapp.io/oauth2callback/Azure%20Active%20Directory`
+```
+https://oauth-openshift.apps.<YOUR_CLUSER_DOMAIN>/oauth2callback/<OAUTH_PROVIDER_NAME>
+```
+
+So for Azure Active Directory in Azure Red Hat OpenShift, it could look like this:
+
+```
+https://oauth-openshift.apps.15owzrxf.eastus.aroapp.io/oauth2callback/Azure%20Active%20Directory
+```
 
 To add the redirect URI, follow the following steps:
 
@@ -38,7 +45,7 @@ To add the redirect URI, follow the following steps:
 Alternatively, you can also use the command line.
 
 ```bash
-az ad app update --id <CLINET_ID> --reply-urls <REDIRECT_URL>
+az ad app update --id <CLIENT_ID> --reply-urls <REDIRECT_URL>
 ```
 
 ## 2. Create an OpenShift secret for the Service Principal Secret
