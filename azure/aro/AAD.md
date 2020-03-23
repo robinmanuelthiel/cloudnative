@@ -2,6 +2,8 @@
 
 ## 1. Add Optional UPN Claim
 
+![](images/aad-add-upn-claim.png)
+
 ## 2. Create an OpenShift secret for the Service Principal Secret
 
 ```bash
@@ -13,6 +15,8 @@ oc create secret generic openid-client-secret-aad \
 ## 3. Add your cluster's OAuth Callback URL to Active Directory
 
 `https://oauth-openshift.apps.15owzrxf.eastus.aroapp.io/oauth2callback/AAD`
+
+![](images/aad-add-redirect-url.png)
 
 ```bash
 az ad app update --id $CLIENT_ID --reply-urls $CALLBACK_URL
