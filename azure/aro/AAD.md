@@ -45,7 +45,7 @@ To add the redirect URI, follow the following steps:
 Alternatively, you can also use the command line.
 
 ```bash
-az ad app update --id <CLINET_ID> --reply-urls <REDIRECT_URL>
+az ad app update --id <CLIENT_ID> --reply-urls <REDIRECT_URL>
 ```
 
 ## 2. Create an OpenShift secret for the Service Principal Secret
