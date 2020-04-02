@@ -1,7 +1,7 @@
 # Azure Monitor
 
 ```bash
-RG_NAME=AzureArcTest                                                                                             
+RG_NAME=AzureArcTest
 WORKSPACE_NAME=rothiearcws
 REGION=westeurope
 CLUSTER_NAME=AzureArcTest1
