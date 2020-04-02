@@ -12,8 +12,8 @@ AKS_SERIVCE_PRINCIPAL_CLIENT_ID=$(az aks show -g $RESOURCE_GROUP -n $AKS_NAME --
 
 # Role Assignments
 az role assignment create \
-  --assignee $IDENTITY_CLIENT_ID \
   --role "Managed Identity Operator" \
+  --assignee $AKS_SERIVCE_PRINCIPAL_CLIENT_ID \
   --scope $IDENTITY_RESOURCE_ID
 
 # Create a Kubernetes namespace

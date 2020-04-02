@@ -1,6 +1,8 @@
 # Azure Active Directory Pod Identity
 
 
+
+
 ```bash
 cat <<EOF | kubectl apply -f -
 apiVersion: "aadpodidentity.k8s.io/v1"
