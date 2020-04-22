@@ -15,7 +15,7 @@ metadata:
   name: aadtest-read-nodes-binding
 subjects:
 - kind: ServiceAccount
-  name: aadtest-read-nodes
+  name: aadtest
   namespace: default
 roleRef:
   kind: ClusterRole
