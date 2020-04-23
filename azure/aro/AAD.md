@@ -15,7 +15,7 @@ To ensure, that both, native Azure Active Directory users and B2B users can logi
 1. Select ***upn*** from the claims list.
 1. Click the ***Add*** button
 
-![](images/aad-add-upn-claim.png)
+![aad-add-upn-claim Screenshot](images/aad-add-upn-claim.png)
 
 ### Add a Redirect URI
 
