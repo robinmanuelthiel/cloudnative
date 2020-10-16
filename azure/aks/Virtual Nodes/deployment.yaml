@@ -1,0 +1,69 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: api
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+        - name: microcommunication-api
+          image: robinmanuelthiel/microcommunication-api:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "125m"            
+      
+      # This toleration allows the pod to be scheduled onto a node with the 
+      # 'virtual-kubelet.io/provider=azure:NoSchedule' taint.      
+      tolerations:
+      - key: virtual-kubelet.io/provider
+        operator: Exists      
+      
+      nodeSelector:
+        kubernetes.io/role: agent
+        beta.kubernetes.io/os: linux
+        # type: virtual-kubelet # uncomment to enforce scheduling on nodes with the 'type=virtual-kubelet' label 
+
+      # The node (anti-)affinity gets configures to prefer physical nodes and only select virtual nodes, if no other 
+      # scheduling targets are available.
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:          
+            - weight: 1 
+              preference:
+                matchExpressions:
+                - key: type
+                  operator: NotIn
+                  values:
+                  - virtual-kubelet
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: api
+spec:
+  type: LoadBalancer
+  selector:
+    app: api
+    namespace: microcommunication
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
