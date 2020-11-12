@@ -1,6 +1,5 @@
 # Blue / Green Deployments
 
-
 ## Get currently active environment
 
 ### CLI
