@@ -9,7 +9,7 @@ output "aad_pod_identity_client_id" {
   description = "Client ID for the Managed Identity for AAD Pod Identity"
 }
 
-# output "helm_values" {
-#   value       = helm_release.aad_pod_identity.metadata.values
-#   description = "AAD Pod Identity Helm Chart Values"
-# }
+output "aks_public_ip" {
+  value       = azurerm_public_ip.default.ip_address
+  description = "The public IP address for ingress"
+}

@@ -22,6 +22,10 @@ terraform init
 terraform apply -auto-approve
 ```
 
+> ***Note:*** Installing the NGINX Helm Chart via Terraform will fail the first time, as the `SecretProviderClass` isn't availabe at this point in time. That's ok, we will fix it later.
+
+Get the Ingress IP Address from the Terraform output and create a DNS A-Record at your Domain pointing to domain of your choice. In this demo, it is `rothiekvcsi.robinmanuelthiel.dev`. If you choose a different one, adjust it in `kubernetes/ingress.yaml`.
+
 Login to the cluster
 
 ```bash
@@ -39,3 +43,11 @@ Setup the Kubernetes Cluster from the `/kubernetes` folder.
 ```bash
 kubectl apply -f .
 ```
+
+Run Terraform again to fix the NGINX Helm Chart.
+
+```bash
+terraform apply -auto-approve
+```
+
+![Screenshot](screenshot.png)

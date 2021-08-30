@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: demo
+  namespace: default
   labels:
     app: demo
     aadpodidbinding: demo-aad-pod-identity
@@ -25,12 +26,13 @@ spec:
         driver: secrets-store.csi.k8s.io
         readOnly: true
         volumeAttributes:
-          secretProviderClass: "demo-azure-keyvault"
+          secretProviderClass: "demo-azure-keyvault-secret"
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: demo
+  namespace: default
 spec:
   selector:
     app: demo
