@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: demo
+spec:
+  tls:
+  - hosts:
+      - rothiekvcsi.robinmanuelthiel.dev
+    secretName: demo-key-vault-cert
+  rules:
+  - host: rothiekvcsi.robinmanuelthiel.dev
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: demo
+            port: 
+              number: 80
