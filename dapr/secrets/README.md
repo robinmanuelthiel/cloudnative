@@ -3,10 +3,8 @@
 - [x] Run Dapr + Azure Key Vault locally
 - [x] Run Dapr + Secrets file locally
 - [x] Debug .NET App with Dapr in VS Code
-- [ ] Run Dapr with Docker-Compose locally
-- [ ] Debug Dapr with Docker-Compose locally
 - [ ] Debug .NET App with Dapr in Rider
-- [ ] Deploy to Kubernetes with Helm and AAD Pod Identity
+- [x] Deploy to Kubernetes with Helm and AAD Pod Identity
 
 ## Steps
 
@@ -68,4 +66,18 @@ az keyvault set-policy \
 
 ```bash
 docker buildx build --push --tag robinmanuelthiel/dapr-secrets-demo:latest -f src/SecretsDemo/Dockerfile  .
+```
+
+## Create infrastructure
+
+```bash
+cd env/terraform
+terraform init
+terraform apply
+```
+
+## Deploy Helm Chart
+
+```bash
+helm upgrade app env/helm/SecretsDemo --namespace app --install --wait --create-namespace
 ```
