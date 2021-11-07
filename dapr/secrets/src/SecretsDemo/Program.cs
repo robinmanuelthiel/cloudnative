@@ -22,18 +22,13 @@ namespace SecretsDemo
             Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration(config =>
                 {
-                    var secretStore = "cloud-secret-store";
                     var daprClient = new DaprClientBuilder().Build();
-
-                    // Only get specific secrets from secret store
-                    // config.AddDaprSecretStore(secretStore, new List<DaprSecretDescriptor>
-                    // {
-                    //     new DaprSecretDescriptor("TestConnectionString"),
-                    //     new DaprSecretDescriptor("TestSecret")
-                    // }, daprClient);
-
-                    // Get entire secret store
-                    config.AddDaprSecretStore(secretStore, daprClient);
+                    var secrets = config
+                        .Build()
+                        .GetSection("Secrets")
+                        .Get<string[]>()
+                        .Select(x => new DaprSecretDescriptor(x));
+                    config.AddDaprSecretStore("secret-store", secrets, daprClient);
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
